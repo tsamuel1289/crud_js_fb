@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD JS FB</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css">
+</head>
+<body>
+ 
+ <div class="col-md-6 p-2">
+    <div class="card p-1">
+        <div class="card-body">
+            <form id="task-form">
+                <div class="form-group">
+                    <input type="text" id="task-title" class="form-control" placeholder="Título de tarea" autofocus>
+                </div>
+                <div class="formgroup">
+                    <textarea id="task-description" rows="6" class="form-control" placeholder="Descripcion de la tarea"></textarea>
+                </div>
+                <button class="btn btn-primary m-2" id="btn-task-form">Save</button>
+            </form>
+          </div>
+     </div>
+ </div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyArUTnAQ15t9vxt9Ea6l-I_QXG11uTia3M",
+    authDomain: "js-fb-7ab2e.firebaseapp.com",
+    databaseURL: "https://js-fb-7ab2e.firebaseio.com",
+    projectId: "js-fb-7ab2e",
+    storageBucket: "js-fb-7ab2e.appspot.com",
+    messagingSenderId: "581110122909",
+    appId: "1:581110122909:web:6f568004df8a98205e0774"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>  
+<script src="index.js"></script>
+
+</body>
+</html>
