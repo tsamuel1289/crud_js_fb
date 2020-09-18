@@ -1,17 +1,10 @@
 
 const db = firebase.firestore(); //esto conecta a firestore
 
-const taskform = document.getElementById('task-form'); //con esto llama por ID al formulario
 
 const taskContainer = document.getElementById('contenedorTareas');
 
-const guardarTarea = (titulo, descripcion) => //se hace una funcion para utilizarlo en todos lados
-    db.collection('tareas').doc().set({ //el await hace que se espere hasta que se tenga respuesta y se coloca cuando se ejecuta la funcion
-        titulo: titulo,
-        descripcion: descripcion
-    })
-
-const traerTareas = () => db.collection('tareas').get(); //este metodo trae todo d ela coleccion "tareas"
+//const traerTareas = () => db.collection('tareas').get(); //este metodo trae todo d ela coleccion "tareas"
 
 const onGetTasks = (callback) => db.collection('tareas').onSnapshot(callback); //funcion de firebase para ejecutar cuando hay cambios
 
@@ -21,7 +14,6 @@ window.addEventListener('DOMContentLoaded', async (e) => { //esta funcion es par
    onGetTasks((querySnapshot) => {
         taskContainer.innerHTML = '';
         querySnapshot.forEach(doc => {
-            console.log(doc.data()) 
 
             const task = doc.data();
 
@@ -37,12 +29,20 @@ window.addEventListener('DOMContentLoaded', async (e) => { //esta funcion es par
 
    })
    
-
-
-  
 })
 
 
+
+
+
+
+const taskform = document.getElementById('task-form'); //con esto llama por ID al formulario
+
+const guardarTarea = (titulo, descripcion) => //se hace una funcion para utilizarlo en todos lados
+    db.collection('tareas').doc().set({ //el await hace que se espere hasta que se tenga respuesta y se coloca cuando se ejecuta la funcion
+        titulo: titulo,
+        descripcion: descripcion
+    })
 
 taskform.addEventListener('submit', async (e)=> {     // entra el evento submit del boton y sale la funcion e, el async siempre va al inicio de la funcion
     e.preventDefault();    //evita que se vuelva a cargar la pagina
