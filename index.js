@@ -8,6 +8,9 @@ const taskContainer = document.getElementById('contenedorTareas');
 
 const onGetTasks = (callback) => db.collection('tareas').onSnapshot(callback); //funcion de firebase para ejecutar cuando hay cambios
 
+//FUNCION DE DELETE
+const deleteTask = (id) => db.collection('tareas').doc(id).delete();
+
 window.addEventListener('DOMContentLoaded', async (e) => { //esta funcion es para que cuando inice la venta se llame a la funcion "traerTareas"
    // const querySnapshot = await traerTareas(); //en querysnapshot se guarda todos los datos
    
@@ -21,10 +24,20 @@ window.addEventListener('DOMContentLoaded', async (e) => { //esta funcion es par
             <h3 class = "h5">${task.titulo}</h3>
             <p>${task.descripcion}</p>
                 <div>
-                    <button class="btn btn-primary"> Delete </button>
+                    <button class="btn btn-primary btn-delete" data-id="${doc.id}" > Delete </button>
                     <button class="btn btn-secondary"> Editar </button>
                 </div>
             </div> `
+
+            //BOTON DELETE 
+            const btnsDelete = document.querySelectorAll('.btn-delete');
+            btnsDelete.forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    
+                    await deleteTask(e.target.dataset.id);
+                })
+            })
+            
         })
 
    })
