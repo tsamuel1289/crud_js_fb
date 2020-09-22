@@ -11,6 +11,13 @@ const onGetTasks = (callback) => db.collection('tareas').onSnapshot(callback); /
 //FUNCION DE DELETE
 const deleteTask = (id) => db.collection('tareas').doc(id).delete();
 
+//PARA EDITAR
+const getTask = (id) => db.collection('tareas').doc(id).get();
+
+
+
+
+
 window.addEventListener('DOMContentLoaded', async (e) => { //esta funcion es para que cuando inice la venta se llame a la funcion "traerTareas"
    // const querySnapshot = await traerTareas(); //en querysnapshot se guarda todos los datos
    
@@ -25,7 +32,7 @@ window.addEventListener('DOMContentLoaded', async (e) => { //esta funcion es par
             <p>${task.descripcion}</p>
                 <div>
                     <button class="btn btn-primary btn-delete" data-id="${doc.id}" > Delete </button>
-                    <button class="btn btn-secondary"> Editar </button>
+                    <button class="btn btn-secondary btn-edit" data-id="${doc.id}"> Editar </button>
                 </div>
             </div> `
 
@@ -36,8 +43,17 @@ window.addEventListener('DOMContentLoaded', async (e) => { //esta funcion es par
                     
                     await deleteTask(e.target.dataset.id);
                 })
+            });
+            //BOTON EDITAR
+            const btnsEdit = document.querySelectorAll('.btn-edit');
+            btnsEdit.forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    const doc = await getTask(e.target.dataset.id);
+                    console.log(doc.data);
+                    taskform['task-title'].value = "h";
+
+                })
             })
-            
         })
 
    })
